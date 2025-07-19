@@ -1,0 +1,24 @@
+### listar todas cidades
+GET http://localhost:3000/cidades
+
+### listar uma cidades
+GET http://localhost:3000/cidades/
+
+### criar cidade
+POST http://localhost:3000/cidades
+Content-Type: application/json
+
+{
+    "nome":"Manaus",
+    "uf_id": 1
+}
+### atulizar cidade
+PATCH http://localhost:3000/cidades/
+Content-Type: application/json
+
+{
+    
+}
+
+### apagar cidade
+DELETE http://localhost:3000/cidades/

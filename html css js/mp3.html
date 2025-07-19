@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+*{
+    font-family: "Balsamiq Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.mp-3 {
+  background: #ffcbee;
+  width: 200px;
+  height: 433px;
+  position: relative;
+  margin: 20px auto ;
+  border-radius: 3px;
+  box-shadow: 2px 2px 6px 0px #57575769;
+  transition: 0.3s;
+}
+
+.screen {
+  background: #070709;
+  border-style: solid;
+  border-color: #707070;
+  border-width: 10px 8px 22px 8px;
+  border-radius: 3px;
+  width: 160px;
+  height: 190px;
+  position: relative;
+  top: 20px;
+  left: 10px;
+}
+#listening{
+    
+    color: white;
+    margin: auto;
+    text-align: center;
+}
+#listening img{
+    width: 100px;
+    margin-top: 30px;
+    border-radius: 2px;
+}
+#trackName{
+    font-weight: 700;
+    font-size: 1rem;
+}
+#artistName{
+    font-size: 0.8rem;
+    
+}
+
+
+.botao-1 {
+  background: #efefef;
+  border-radius: 50%;
+  border: 1px solid #f38dd1 ;
+  width: 148px;
+  height: 148px;
+  position: relative;
+  top: 40px;
+  margin: auto;
+  
+}
+.botao-2{
+  background: #ffcbee;
+  color: white;
+    width: 66px; width: 66px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    position: relative;
+    top: 20px;
+    left: 40px;
+    border: 1px solid #f38dd1 ;
+}
+.pause{
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+
+.menu p , .next p , .back-next p, .vol p{
+  color: #000000;
+  text-align: center;
+
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0 8px 0 8px;
+    
+}
+.back-next{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: -20px;
+}
+.vol, .menu{
+    position: relative;
+    top: 10px;
+}
+.mp-3:hover{
+    rotate: 10deg;
+    
+}
+
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="mp-3" onclick="window.open(music_url, '_blank')">
+        <div class="screen">
+            <div id="listening">Carregando...
+                
+            </div>
+
+        </div>
+        <div class="botao-1">
+            <div class="menu"><p>menu</p></div>
+        <div class="botao-2">
+            <div class="pause"><p>▶▐▐</p></div></div>
+        <div class="back-next"><p>◀</p> <p>▶ </p></div>
+        <div class="vol"><p>vol</p></div>
+      </div>
+      
+      </div>
+</body>
+<script>
+     const USERNAME = "RETR0GIRL"; // Coloque seu nome de usuário do LastFM aqui
+        const BASE_URL = `https://lastfm-last-played.biancarosa.com.br/${USERNAME}/latest-song`;
+        let music_url = ""
+
+        const getTrack = async () => {
+            const request = await fetch(BASE_URL);
+            const json = await request.json();
+            console.log(json)
+            let isPlaying = json.track['@attr']?.nowplaying || false; //
+            music_url = json.track.url;
+            document.getElementById("listening").innerHTML = `
+                <img src="${json.track.image[2]['#text']}" alt="Capa do álbum">
+                <div id="trackInfo">
+                    <p id="trackName">${json.track.name}</p>
+                    <p id="artistName">${json.track.artist['#text']}</p>
+                </div>
+            `;
+        };
+
+        getTrack();
+        setInterval( () => {
+            getTrack();
+        }, 300000); // Atualiza a cada 5 minutos
+        wi
+</script>
+</html>

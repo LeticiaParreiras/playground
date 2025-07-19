@@ -1,0 +1,25 @@
+### listar todas uf
+GET http://localhost:3000/ufs
+
+### listar uma uf
+GET http://localhost:3000/ufs/1
+
+### criar uma uf
+POST http://localhost:3000/ufs
+Content-Type: application/json
+
+{
+    "nome":"Amazonas",
+    "sigla":"AM"
+}
+
+### atualizar uf
+PATCH http://localhost:3000/ufs/1
+Content-Type: application/json
+
+{
+
+}
+
+### apagar uf
+DELETE http://localhost:3000/uf/1
